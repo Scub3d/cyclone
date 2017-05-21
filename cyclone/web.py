@@ -1399,6 +1399,12 @@ class Application(protocol.ServerFactory):
         if handlers:
             self.add_handlers(".*$", handlers)
 
+        if self.settings.get('autoreload'):
+            print ""
+            print "Auto Reloader Enabled"
+            from cyclone import autoreload
+            autoreload.start()
+
     def add_handlers(self, host_pattern, host_handlers):
         """Appends the given handlers to our handler list.
 
